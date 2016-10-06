@@ -1,28 +1,22 @@
 package domain
 
-import javax.persistence.{Column, Entity, Id, Table}
+import com.typesafe.slick.driver.ms.SQLServerDriver.api._
+import slick.lifted.ProvenShape
+
 
 /**
   * Created by Gukov on 05.10.2016.
   */
-@Entity
-@Table(name = "gtk_delivery_company")
-class DeliveryCompany(vId:Long,vName:String,vAddress:String,vContactPerson:String,vPhone:String) {
 
-    @Id
-    @Column(name="id")
-    val id = vId
+case class DBDeliveryCompany(Id:Long,Name:String,Address:String,ContactPerson:String,Phone:String)
 
-    @Column(name="name")
-    val name = vName
 
-    @Column(name="address")
-    val adress = vAddress
-
-    @Column(name="contact_person")
-    val contactPerson = vContactPerson
-
-    @Column(name="phone")
-    val phone = vPhone
-
+class DeliveryCompany(tag:Tag) extends Table[DBDeliveryCompany](tag,"gtk_delivery_c") {
+    def id = column[Long]("id",O.PrimaryKey,O.AutoInc)
+    def name = column[String]("name")
+    def address = column[String]("address")
+    def contactPerson = column[String]("contact_person")
+    def phone = column[String]("phone")
+    def *  = (id,name,address,contactPerson,phone) <> (DBDeliveryCompany.tupled,DBDeliveryCompany.unapply)
 }
+
