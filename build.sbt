@@ -10,13 +10,13 @@ libraryDependencies ++= Seq(
   //jdbc,
   cache,
   ws,
-  evolutions,
+
   "org.pac4j"%"play-pac4j"%"2.5.0",
   "org.pac4j"%"pac4j-http"%"1.9.2",
   "org.pac4j"%"pac4j-jwt"%"1.9.2"  exclude("commons-io" , "commons-io"),
   "org.pac4j"%"pac4j-sql"%"1.9.2",
   "com.typesafe.play" %% "play-slick" % "2.0.0",
-  "com.typesafe.play" %% "play-slick-evolutions" % "2.0.0",
+
   "com.typesafe.slick"%% "slick-extensions"  % "3.1.0",
   "com.typesafe.play" % "play-cache_2.11" % "2.5.8",
   "commons-io" % "commons-io" % "2.4",
