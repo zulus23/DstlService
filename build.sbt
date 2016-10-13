@@ -20,6 +20,11 @@ libraryDependencies ++= Seq(
   "com.typesafe.slick"%% "slick-extensions"  % "3.1.0",
   "com.typesafe.play" % "play-cache_2.11" % "2.5.8",
   "commons-io" % "commons-io" % "2.4",
+  "org.webjars" %% "webjars-play" % "2.5.0",
+  "org.webjars" % "bootstrap" % "3.3.7",
+  "org.webjars" % "font-awesome" % "4.6.3",
+
+
   "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
 )
 
