@@ -2,7 +2,7 @@
  * This template takes a single argument, a String containing a
  * message to display.
  *@
-@(message: String)(profiles: List[org.pac4j.core.profile.CommonProfile])
+@(message: String)(implicit webJarAssets: WebJarAssets,profiles: List[org.pac4j.core.profile.CommonProfile])
 
 @*
  * Call the `main` template with two arguments. The first
