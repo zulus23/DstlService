@@ -25,3 +25,7 @@ html,body{
 {
     border-width: 0;
 }
+#paneljournal{
+    padding-left: 0;
+    padding-right: 0;
+}

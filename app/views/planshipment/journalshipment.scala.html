@@ -1,6 +1,135 @@
 @()
 
 
-<div>
-    <h1>Шаблон журнала отгрузок</h1>
+<div id="paneljournal" class="col-md-12">
+    <div id="journalGridView"></div>
 </div>
+<script>
+        /* ========================================== Grid ======================================= */
+
+        $("#journalGridView").kendoGrid({
+
+            //dataSource: dataSourceDB,
+            height: '100%',
+
+            sortable: true,
+            filterable: true,
+            resizable: true,
+            pageable: {
+                pageSizes: true
+            },
+            dataBound: function (e) {
+                $("#gridView").find('.k-icon.k-i-collapse').trigger('click');
+            },
+            columns: [
+                {
+                    field: "orderNumber",
+                    title: "№ Заказа",
+                    width: "70px",
+                  //  headerAttributes: gridUtils.headerFormat,
+                   // attributes: gridUtils.columnFormat,
+                    groupable: false
+                },
+                {
+                    field: "orderLine",
+                    title: "№ Строки",
+                    width: "60px",
+                   // headerAttributes: gridUtils.headerFormat,
+                   // attributes: gridUtils.columnFormat,
+//filterable: false,
+                    groupable: false
+                },
+                {
+                    field: "manager",
+                    title: "Менеджер",
+                    width: "80px",
+                 //   headerAttributes: gridUtils.headerFormat,
+                 //   attributes: gridUtils.columnFormat,
+                    aggregates: ["count"],
+                    groupHeaderTemplate: "Менеджер: #=value#: #=count# : (#=  Math.round((count/calcAll(data,field,value))*100)#%): Count : #=count#"
+                },
+                {
+                    field: "customer",
+                    title: "Клиент",
+                    width: "180px",
+                    aggregates: ["count"],
+                   // headerAttributes: gridUtils.headerFormat,
+                   // attributes: gridUtils.columnFormat,
+
+                    /*groupHeaderTemplate: "Клиент: #=value# : #=count#: (#= Math.round((count/calcAll(data,field,value))*100)#%)"*/
+                    groupHeaderTemplate: "Клиент: #=value# : #=count#: (#= calcAll(data,field,value,count)#)"
+//groupHeaderTemplate: "Клиент: #=value# : #=count#"
+                },
+                {
+                    field: "itemDescription",
+                    title: "Наименование заказа",
+                    width: "130px",
+                  //  headerAttributes: gridUtils.headerFormat,
+                  //  attributes: gridUtils.columnFormat,
+                    filterable: false,
+                    groupable: false
+                },
+                {
+                    field: "monthShip",
+                    title: "Месяц отгрузки",
+                    width: "50px",
+                  //  headerAttributes: gridUtils.headerFormat,
+                  //  attributes: gridUtils.columnFormat,
+                    groupable: false,
+                    aggregates: ["count"],
+                    groupHeaderTemplate: "Месяц отгрузки: #=value# : (#= calcAll(data,field,value)#)"
+//groupHeaderTemplate: "Месяц отгрузки: #=value# : (#= count#)"
+                },
+                {
+                    field: "planDeliveryDateFormat",
+                    title: "Дата доставки план",
+                    width: "80px",
+                  //  headerAttributes: gridUtils.headerFormat,
+                  //  attributes: gridUtils.columnFormatChangeDeliveryDate,
+                    filterable: false,
+                    groupable: false
+                },
+                {
+                    field: "factDeliveryDateFormat",
+                    title: "Дата доставки факт.",
+                    width: "80px",
+                   // headerAttributes: gridUtils.headerFormat,
+                   // attributes: gridUtils.columnFormat,
+                    filterable: false,
+                    groupable: false
+                },
+                {
+                    field: "deviation",
+                    title: "Отклонение",
+                    width: "65px",
+                  //  headerAttributes: gridUtils.headerFormat,
+                  //  attributes: gridUtils.columnFormat,
+                    groupable: false
+                },
+                {
+                    field: "reasonDeviation",
+                    title: "Причина отклонений",
+                    width: "65px",
+                  //  headerAttributes: gridUtils.headerFormat,
+                   // attributes: gridUtils.columnFormat,
+                    groupable: true,
+                    aggregates: ["count"],
+                    groupHeaderTemplate: "Причина отклонений: #=value#: #=count# : (#= calcAll(data,field,value,count)#)"
+                },
+
+                {
+                    field: "calcStatus",
+                    title: "Состояние",
+                    width: "80px",
+                    aggregates: ["count"],
+                  //  headerAttributes: gridUtils.headerFormat,
+                  //  attributes: gridUtils.columnFormat,
+//groupHeaderTemplate: "Состояние: #=value#: #=count# : (#= Math.round((count/calcAll(data,field,value))*100)#%)"
+                    groupHeaderTemplate: "Состояние: #=value#: #=count# : (#= calcAll(data,field,value,count)#)"
+//groupHeaderTemplate: "Состояние: #=value#: #=count# "
+                }
+
+            ]
+        });
+        /* ======================================================================================= */
+</script>
