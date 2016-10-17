@@ -1,14 +1,19 @@
 
 @(param: String)(implicit webJarAssets: WebJarAssets)
 @main(param) {
+    <div style="height: 30px; width: 100%;">
+        <h5>План на сутки</h5>
+    </div>
     <div id="planShipment" style="height: 100%;
         width: 100%;">
         <div id="planShipmentByDay">
-           <h1>Header</h1>
+          @planshipment.plandays()
         </div>
         <div id="journalShipment">
-            <h1>footer</h1>
+           @planshipment.journalshipment()
         </div>
+
+
 
     </div>
 
@@ -22,7 +27,14 @@
                         {collapsible: false, resizable: false, size: "100px"}
                     ]
                 });
-
+                $("#days_").kendoSplitter({
+                    orientation: "horizontal",
+                    panes: [
+                        {collapsible: true},
+                        {collapsible: false, size: "100px"},
+                        {collapsible: false, resizable: false, size: "100px"}
+                    ]
+                });
 
             });
     </script>
