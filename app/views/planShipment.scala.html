@@ -1,0 +1,29 @@
+
+@(param: String)(implicit webJarAssets: WebJarAssets)
+@main(param) {
+    <div id="planShipment" style="height: 100%;
+        width: 100%;">
+        <div id="planShipmentByDay">
+           <h1>Header</h1>
+        </div>
+        <div id="journalShipment">
+            <h1>footer</h1>
+        </div>
+
+    </div>
+
+    <script>
+            $(document).ready(function () {
+                $("#planShipment").kendoSplitter({
+                    orientation: "vertical",
+                    panes: [
+                        {collapsible: false},
+                        {collapsible: false, size: "100px"},
+                        {collapsible: false, resizable: false, size: "100px"}
+                    ]
+                });
+
+
+            });
+    </script>
+}

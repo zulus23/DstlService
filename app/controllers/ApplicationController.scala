@@ -17,7 +17,8 @@ import scala.collection.JavaConversions._
  * application's home page.
  */
 
-class ApplicationController @Inject()(implicit webJarAssets: WebJarAssets,val config: Config, val playSessionStore: PlaySessionStore, override val ec: HttpExecutionContext) extends Controller with Security[CommonProfile] {
+class ApplicationController @Inject()(implicit webJarAssets: WebJarAssets,val config: Config, val playSessionStore: PlaySessionStore, override val ec: HttpExecutionContext)
+              extends Controller with Security[CommonProfile] {
 
   private def getProfiles(implicit request: RequestHeader): List[CommonProfile] = {
     val webContext = new PlayWebContext(request, playSessionStore)
@@ -42,4 +43,6 @@ class ApplicationController @Inject()(implicit webJarAssets: WebJarAssets,val co
     val formClient = config.getClients.findClient("FormClient").asInstanceOf[FormClient]
     Ok(views.html.loginForm.render(formClient.getCallbackUrl))
   }
+
+  def planShipment() = Action { request => Ok(views.html.planShipment("План отгрузки на сутки")(webJarAssets))  }
 }

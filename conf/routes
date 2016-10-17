@@ -4,7 +4,9 @@
 
 # An example controller showing a sample home page
 GET         /                           controllers.ApplicationController.index
-GET         /loginForm                        controllers.ApplicationController.loginForm()
+GET         /loginForm                  controllers.ApplicationController.loginForm()
+
+GET         /planshipment              controllers.ApplicationController.planShipment
 
 
 GET         /callback                         @org.pac4j.play.CallbackController.callback()
