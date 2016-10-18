@@ -1,5 +1,7 @@
 package domain
 
+import play.api.libs.json.{JsValue, Json, Writes}
+
 /**
   * Created by Gukov on 14.10.2016.
   */
@@ -7,8 +9,8 @@ case class Enterprise(id:Int,name:String,dbName:String)
 
 
 
-
 object Enterprise {
+
    val listEnterprise:List[Enterprise] = {
       List(Enterprise(0,"ЗАО ГОТЭК-ЦПУ",""),
            Enterprise(1,"ЗАО ГОТЭК-СЕВЕРО-ЗАПАД",""),
@@ -20,6 +22,11 @@ object Enterprise {
 
           )
    }
+   val listServiceDst = listEnterprise.filter(e => List(0,1).contains(e.id))
+
 }
+
+
+
 
 

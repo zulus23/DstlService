@@ -29,3 +29,19 @@ html,body{
     padding-left: 0;
     padding-right: 0;
 }
+
+.navbar-default .navbar-nav>li .k-widget {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: transparent;
+    width: 250px;
+}
+/* Bootstrap*/
+.form-control {
+    height: 20px;
+}
+.row {
+    margin-right: 0px;
+}
+
+

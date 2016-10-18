@@ -4,7 +4,7 @@
 
     </div>
     <div id="plandayField">
-        <h1>Поля</h1>
+        @planshipment.plandayField()
     </div>
 
 </div>
@@ -12,7 +12,7 @@
         /* ========================================== Grid ======================================= */
 
         $("#plandayGrid").kendoGrid({
-
+            toolbar: ["excel"],
             //dataSource: dataSourceDB,
             height: '100%',
             groupable:true,

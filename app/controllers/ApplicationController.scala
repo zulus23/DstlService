@@ -11,13 +11,14 @@ import org.pac4j.core.config.Config
 import org.pac4j.play.store.PlaySessionStore
 
 import scala.collection.JavaConversions._
+import play.api.mvc.Flash._
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
  * application's home page.
  */
 
-class ApplicationController @Inject()(implicit webJarAssets: WebJarAssets,val config: Config, val playSessionStore: PlaySessionStore, override val ec: HttpExecutionContext)
+class ApplicationController @Inject()(implicit webJarAssets: WebJarAssets, val config: Config, val playSessionStore: PlaySessionStore, override val ec: HttpExecutionContext)
               extends Controller with Security[CommonProfile] {
 
   private def getProfiles(implicit request: RequestHeader): List[CommonProfile] = {
@@ -34,15 +35,18 @@ class ApplicationController @Inject()(implicit webJarAssets: WebJarAssets,val co
    * will be called when the application receives a `GET` request with
    * a path of `/`.
    */
-  def index = Action {request =>
+  def index = Action {implicit request =>
     val profile = getProfiles(request)
+
     Ok(views.html.index("Your new application is ready.")(webJarAssets,profile))
   }
 
-  def loginForm() = Action{ request =>
+  def loginForm() = Action{implicit request =>
     val formClient = config.getClients.findClient("FormClient").asInstanceOf[FormClient]
     Ok(views.html.loginForm.render(formClient.getCallbackUrl))
   }
 
-  def planShipment() = Action { request => Ok(views.html.planShipment("План отгрузки на сутки")(webJarAssets))  }
+  def planShipment() = Action {implicit request =>
+
+    Ok(views.html.planShipment("План отгрузки на сутки")(webJarAssets))  }
 }
